@@ -166,7 +166,8 @@ vector<int> deep_search(vector<int> &visited, vector<vector<int>> &adj_list_inde
 int main(int argc, char* argv[])
 {
 		ofstream outstream;
-		outstream.open("none.txt");
+		string open = "none";
+		string g_specs = "";
 		vector<int> best_path;
 		int parowanie_sila = 4;
 		int exe_time = 60;
@@ -178,7 +179,7 @@ int main(int argc, char* argv[])
 		int needed_time = 60;
 		int g_size = 100;
 		int qualifiers = 4;
-		if (argc == 11)
+		if (argc == 13)
 		{
 			parowanie_sila = stoi(argv[1]);
 			exe_time = stoi(argv[2]);
@@ -190,7 +191,10 @@ int main(int argc, char* argv[])
 			needed_time = stoi(argv[8]);
 			g_size = stoi(argv[9]);
 			qualifiers = stoi(argv[10]);
+			open = argv[11];
+			g_specs = argv[12];
 		}
+		outstream.open(open + ".txt");
 		srand(time(0));
 		for (int graph_number = 1; graph_number <= n_of_g; graph_number++)
 		{
@@ -202,7 +206,7 @@ int main(int argc, char* argv[])
 			vector<vector<int>> adj_list_indexes;
 			vector<vector<int>> adj_matrix;
 			string the_path = "C:/Users/Marcin/source/repos/Graph generator/Graph generator/";
-			std::ifstream mystream(the_path + "graph_nr_" + to_string(graph_number) + "_100__15_wi_100_density70.txt");
+			std::ifstream mystream(the_path + "graph_nr_" + to_string(graph_number) + g_specs + ".txt");
 			if (mystream.is_open())
 			{
 				string input;
